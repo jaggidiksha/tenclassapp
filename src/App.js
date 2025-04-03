@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { useState } from 'react';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div  style={{textAlign:"center"}}>
+      <h1>High order components</h1>
+      <Hocblue cmp={Counter}/>
+      <Hocred cmp={Counter}/>
+      <Hocgreen cmp={Counter}/>
+      {/* <Counter/> */}
     </div>
-  );
+  )
 }
 
 export default App;
+
+function Hocred(props){
+return (
+  <>
+  <h1 style={{backgroundColor:"red"}}><props.cmp/></h1>
+  </>
+)
+}
+function Hocgreen(props){
+  return (
+    <>
+    <h1 style={{backgroundColor:"green"}}><props.cmp/></h1>
+    </>
+  )
+}
+function Hocblue(props){
+  return(
+    <>
+    <h1  style={{backgroundColor:"blue"}}><props.cmp/></h1>
+    </>
+  )
+}
+
+
+
+
+
+function Counter (){
+  const[count,setcount]=useState(0)
+  return(
+    <>
+    <div  style={{textAlign:"center"}}>
+      <h1>count:{count}</h1>
+      <button onClick={()=>setcount(count+1)}>update count</button>
+    </div>
+    </>
+  )
+}
